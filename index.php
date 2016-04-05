@@ -27,8 +27,6 @@ $formationEmploye = RechercheFormationUtilisateur(ObtenirIdEnCours());
 			}
 		?>
 	</table>
-
-
 </div>
 
 

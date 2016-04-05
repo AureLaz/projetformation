@@ -7,13 +7,12 @@ include 'views/headerComplet.php';
 include 'models/dbFormation.php';
 
 $toutesformations = RechercheToutesFormations(ObtenirIdEnCours());
-
-
 ?>
+
 <div id="principal">
 	<h2>Les formations</h2>
 	<table>
-		<thead><tr><td>Titre</td><td>Date </td><td>Durée</td><td>Etat</td></tr></thead>
+		<thead><tr><td>Titre</td><td>Date </td><td>Durée</td><td>Prendre</td></tr></thead>
 		<?php
 			foreach($toutesformations as $uneFormation)
 			{
@@ -22,7 +21,6 @@ $toutesformations = RechercheToutesFormations(ObtenirIdEnCours());
 				echo "<td>$uneFormation->titre </td>";
 				echo "<td class='date'>".AfficherDateComplete($uneFormation->date)."</td>";
 				echo "<td class='duree'>$uneFormation->duree</td>";
-				echo "<td>$uneFormation->etat</td>";
 				echo "</tr>"; 
 			}
 		?>
