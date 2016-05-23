@@ -31,7 +31,7 @@ if (!isset($_SESSION)) {
                       $motdepasse = sha1($motdepasse);
                       $_SESSION['login'] = $login;
                       $_SESSION['mdp'] = $motdepasse;
-                      include("Requete.php");
+                      include("DbFonctions.php");
                       RechercheTousUtilisateurs();
                   }
               }
@@ -69,7 +69,7 @@ if (!isset($_SESSION)) {
                   $_SESSION['message'] = $message;
                   header('Location:index.php#contact');
               } elseif ($i == 0) {
-                  include("Requete.php");
+                  include("DbFonctions.php");
                   $_SESSION['nom'] = $_POST['nom'];
                   $_SESSION['prenom'] = $_POST['prenom'];
                   $_SESSION['mail'] =  $_POST['mail'];

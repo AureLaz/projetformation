@@ -121,7 +121,7 @@ if ($_SESSION['accesUtilisateur'] != "OPEN") {
 				</thead>
 				<tbody>
 				<?php
-                include("Requete.php");
+                include("DbFonctions.php");
                 Tableau(); ?>
 				</tbody>
 				</table>

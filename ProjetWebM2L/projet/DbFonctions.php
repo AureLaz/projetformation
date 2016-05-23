@@ -11,7 +11,7 @@
 
 function RechercheTousUtilisateurs()
 {
-    include("ConnexionBase.php");
+    include("DbInit.php");
     $req = "SELECT * FROM salarie";
     $reponse = $bdd->query($req);
     while ($ligne = $reponse->fetch()) {
@@ -30,18 +30,18 @@ function RechercheTousUtilisateurs()
             $_SESSION['credit'] = $ligne['credit_salarie'];
             $_SESSION['jour'] = $ligne['jour_salarie'];
             $_SESSION['accesAdmin'] = "OPENADMIN";
-            header("Location:TableauAdmin.php");
+            header("Location:InterfaceAdmin.php");
         }
     }
 }
 
 function Tableau()
 {
-    include("ConnexionBase.php");
+    include("DbInit.php");
     $req = "SELECT * from formation, prestataire";
     $reponse = $bdd->query($req);
     while ($ligne = $reponse->fetch()) {
-        echo"<form action='ActionTableau.php' method='post' role='form'>";
+        echo"<form action='ControlerTableau.php' method='post' role='form'>";
         echo"<tr class ='tabtr'>";
         echo"<td>";
         echo " <font color=\"black\">".utf8_encode(ucwords(strtolower(($ligne['date_formation'])))) . "</font> <br />";
@@ -72,7 +72,7 @@ function Tableau()
 
 function TableauConfirme()
 {
-    include("ConnexionBase.php");
+    include("DbInit.php");
     $req = "SELECT * from formation, salarie,prestataire, attente where validation = '1'  and pk_formation=id_formation and id_salarie = '".$_SESSION['id']."' ";
     $reponse = $bdd->query($req);
     while ($ligne = $reponse->fetch()) {
@@ -100,11 +100,12 @@ function TableauConfirme()
 }
 function TableauAdmin()
 {
-    include("ConnexionBase.php");
+    include("DbInit.php");
     $req = "SELECT id_attente,nom_prestataire,lieu_formation,nbHeures_formation,nom_salarie,contenu_formation from prestataire,formation,salarie, attente where validation='0'  and pk_formation=id_formation  group by contenu_formation";
     $reponse = $bdd->query($req);
     while ($ligne = $reponse->fetch()) {
-        echo"<form action='ActionTableauAdmin.php' method='post' role='form'>";
+        //test
+        echo"<form action='ControlerTableauAdmin.php' method='post' role='form'>";
         echo"<tr class ='tabtr'>";
         echo"<td>";
         echo " <font color=\"black\">".utf8_encode(ucwords(strtolower(($ligne['nom_salarie'])))) . "</font> <br />";
@@ -135,7 +136,7 @@ function TableauAdmin()
 
 function tableauInsertAttente()
 {
-    include("ConnexionBase.php");
+    include("DbInit.php");
     $sql = "INSERT INTO attente (pk_salarie, pk_formation,validation) VALUES (:idsalarie,:pkformation,0)";
     $requete = $bdd->prepare($sql);
     $requete->bindParam(':idsalarie', $_SESSION['id']);
@@ -145,7 +146,7 @@ function tableauInsertAttente()
 }
 function InsertInscription()
 {
-    include("ConnexionBase.php");
+    include("DbInit.php");
     $sql = "INSERT INTO salarie (nom_salarie,prenom_salarie,password_salarie,email_salarie, rang_salarie, credit_salarie,jour_salarie) VALUES (:nom,:prenom,:password,:email,1,5000,15)";
     $requete = $bdd->prepare($sql);
     $requete->bindParam(':nom', $_SESSION['nom']);
@@ -161,7 +162,7 @@ function InsertInscription()
 
 function Accepter()
 {
-    include("ConnexionBase.php");
+    include("DbInit.php");
     // $req = "SELECT credit_formation from salarie, formation where id_salarie = '".$_SESSION['id']."' and pk_formation= ";
         // $reponse = $bdd->query($req);
         // while($ligne = $reponse->fetch())
@@ -171,20 +172,20 @@ function Accepter()
 $sql = "UPDATE attente  SET validation = '1' where id_attente = '".$_SESSION['id_attente']."' ";
     $requete = $bdd->prepare($sql);
     $requete->execute();
-    header("Location:TableauAdmin.php");
+    header("Location:InterfaceAdmin.php");
 }
 function Refuser()
 {
-    include("ConnexionBase.php");
+    include("DbInit.php");
     $sql = "DELETE FROM attente where id_attente = '".$_SESSION['id_attente']."' ";
     $requete = $bdd->prepare($sql);
     $requete->execute();
-    header("Location:TableauAdmin.php");
+    header("Location:InterfaceAdmin.php");
 }
 
 function VerifInscription()
 {
-    include("ConnexionBase.php");
+    include("DbInit.php");
     $req = "SELECT nom_salarie,prenom_salarie,password_salarie,email_salarie from salarie";
     $reponse = $bdd->query($req);
     while ($ligne = $reponse->fetch()) {

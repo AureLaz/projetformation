@@ -110,7 +110,7 @@ if ($_SESSION['accesAdmin'] != "OPENADMIN") {
 				</thead>
 				<tbody>
 				<?php
-                include("Requete.php");
+                include("DbFonctions.php");
                 Tableau();
                  ?>
 				</tbody>

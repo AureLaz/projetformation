@@ -96,14 +96,14 @@ unset($_SESSION['accesAdmin']);
 					<h4>Au service de formation M2L</h4>
 				</div>
 
-				<form action="ActionIndex.php" method="post" role="form">
+				<form action="ControlerIndex.php" method="post" role="form">
 							<input name="login" type="text" placeholder="Identifiant" maxlength="15" pattern="[a-zA-Z]{1,10}" title="Lettre uniquement,10 caracteres maximuns" class="form-control">
 							<input name="motdepasse" type="password" placeholder="Mot de passe" pattern="[a-zA-Z0-9]{1,15}" title="Lettre & chiffre uniquement,10 caracteres maximuns" maxlength="15"class="form-control">
 							<input type="submit" name="submit2" value="Connexion" class="form-control">
 
 					</form>
 					<?php
-					include("ActionIndex.php");
+					include("ControlerIndex.php");
 					if(isset($_SESSION['message3']))
 					{
 						echo "<div style='width:100%;' class='alert alert-warning'><font color=\"red\">".$_SESSION['message4'].$_SESSION['message3']."</font> </div>";
@@ -349,7 +349,7 @@ unset($_SESSION['accesAdmin']);
 						<hr>
 						<h4>Inscrivez-vous en quelques secondes !</h4>
 					</div>
-					<form action="ActionIndex.php" method="post" role="form">
+					<form action="ControlerIndex.php" method="post" role="form">
 						<div class="col-md-4 col-sm-4 wow fadeIn" data-wow-delay="0.3s">
 							<input type="text" pattern="[A-Z]{1,10}" title="lettre en majuscule uniquement,10 caracteres maximuns" maxlength="10" placeholder="Nom" name="nom" class="form-control">
 						</div>
@@ -366,7 +366,7 @@ unset($_SESSION['accesAdmin']);
 							<input type="submit" value="S'inscrire" name="submit" class="form-control">
 
 							<?php
-							include("ActionIndex.php");
+							include("ControlerIndex.php");
 							if(isset($_SESSION['$messageErreurInscription']))
 							{
 								//echo $_SESSION['sql'];
