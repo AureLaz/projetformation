@@ -10,7 +10,7 @@ if ($_SESSION['accesAdmin'] != "OPENADMIN") {
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Site de formation M2L</title>
+	<title>M2L Formation</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="keywords" content="">
@@ -60,7 +60,7 @@ if ($_SESSION['accesAdmin'] != "OPENADMIN") {
 						<div class="slider-caption">
 							<div class="templatemo_homewrapper">
 				<!--				<h3 class="wow bounceIn">web design and development</h3>		-->
-							<h1 class="wow bounce">Bienvenue admin <h1>
+							<h1 class="wow bounce">Bonjour admin <h1>
 								<h2>
 
 								</h2>

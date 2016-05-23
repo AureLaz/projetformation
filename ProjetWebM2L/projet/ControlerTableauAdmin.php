@@ -16,10 +16,4 @@ elseif(isset($_POST['Refuser']))
 	include("DbFonctions.php");
 	Refuser();
 }
-
-
-
-
-
-
 ?>

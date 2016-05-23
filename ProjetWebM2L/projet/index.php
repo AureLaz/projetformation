@@ -11,7 +11,7 @@ unset($_SESSION['accesAdmin']);
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Site de formation M2L</title>
+	<title>M2L Formation</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="keywords" content="">

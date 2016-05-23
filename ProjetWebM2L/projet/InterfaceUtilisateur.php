@@ -21,7 +21,7 @@ if ($_SESSION['accesUtilisateur'] != "OPEN") {
 <html lang="en">
 <head>
 	<meta charset="utf-8">
-	<title>Site de formation M2L</title>
+	<title>M2L Formation</title>
 	<meta http-equiv="X-UA-Compatible" content="IE=Edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1">
 	<meta name="keywords" content="">
@@ -71,12 +71,12 @@ if ($_SESSION['accesUtilisateur'] != "OPEN") {
 						<div class="slider-caption">
 							<div class="templatemo_homewrapper">
 				<!--				<h3 class="wow bounceIn">web design and development</h3>		-->
-								<h1 class="wow bounce">Bienvenue <?php echo $_SESSION['prenom']; ?><h1>
+								<h1 class="wow bounce">Bonjour <?php echo $_SESSION['prenom']; ?><h1>
 								<h2>
-									<span class="wow bounce" data-wow-delay="0.3s">Vous avez</span>
-									<span class="wow bounce" data-wow-delay="0.6s">actuellement </span>
+									<span class="wow bounce" data-wow-delay="0.3s">Vous </span>
+									<span class="wow bounce" data-wow-delay="0.6s">disposez de </span>
 									<span class="wow bounce" data-wow-delay="0.9s"><?php echo $_SESSION['credit'];?> Points </span>
-									<span class="wow bounce" data-wow-delay="0.9s"><br>et vous disposez de <?php echo $_SESSION['jour'];?> jour(s) de formation</span>
+									<span class="wow bounce" data-wow-delay="0.9s"><br>et de <?php echo $_SESSION['jour'];?> jour(s) de formation</span>
 								</h2>
 					<!--			<a href="#portfolio" class="smoothScroll templatemo-slider-btn btn btn-default">Learn More</a>  -->
 							</div>
