@@ -38,8 +38,8 @@ function RechercheTousUtilisateurs()
 function Tableau()
 {
     include("DbInit.php");
-    $req = "SELECT * from formation, prestataire";
-    $reponse = $bdd->query($req);
+    $req = "SELECT * from formation, prestataire WHERE date_formation > CURRENT_DATE";
+    $reponse = $bdd->query($req); 
     while ($ligne = $reponse->fetch()) {
         echo"<form action='ControlerTableau.php' method='post' role='form'>";
         echo"<tr class ='tabtr'>";
@@ -73,7 +73,7 @@ function Tableau()
 function TableauConfirme()
 {
     include("DbInit.php");
-    $req = "SELECT * from formation, salarie,prestataire, attente where validation = '1'  and pk_formation=id_formation and id_salarie = '".$_SESSION['id']."' ";
+    $req = "SELECT * from formation, salarie, prestataire, attente where validation = '1'  and pk_formation=id_formation and id_salarie = '".$_SESSION['id']."' ";
     $reponse = $bdd->query($req);
     while ($ligne = $reponse->fetch()) {
         echo"<tr class ='tabtr'>";
