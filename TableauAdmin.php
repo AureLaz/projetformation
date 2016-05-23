@@ -1,11 +1,10 @@
 <?php
-if(!isset($_SESSION))
-		 {
-			 session_start();
-		}
-unset($_SESSION['accesUtilisateur']);
-unset($_SESSION['accesAdmin']);
-
+ if (!isset($_SESSION)) {
+     session_start();
+ }
+if ($_SESSION['accesAdmin'] != "OPENADMIN") {
+    header("Location:index.php");
+}
 ?>
 <!DOCTYPE html>
 <html lang="en">
@@ -43,10 +42,11 @@ unset($_SESSION['accesAdmin']);
 			<div class="collapse navbar-collapse">
 				<ul class="nav navbar-nav navbar-right">
 					<li><a href="#home" class="smoothScroll">Accueil</a></li>
-					<li><a href="#service" class="smoothScroll">Connexion</a></li>
+					<li><a href="#service" class="smoothScroll">Formations</a></li>
 <!--					<li><a href="#about" class="smoothScroll">About</a></li>
 					<li><a href="#portfolio" class="smoothScroll">Portfolio</a></li>
--->					<li><a href="#contact" class="smoothScroll">Contact</a></li>				</ul>
+-->					<li><a href="#contact" class="smoothScroll">Contact</a></li>
+	<li><a href="index.php" class="smoothScroll">Se deconnecter</a></li>		</ul>
 			</div>
 		</div>
 	</nav>
@@ -60,16 +60,18 @@ unset($_SESSION['accesAdmin']);
 						<div class="slider-caption">
 							<div class="templatemo_homewrapper">
 				<!--				<h3 class="wow bounceIn">web design and development</h3>		-->
-								<h1 class="wow bounce">Bienvenue sur le site</h1>
+							<h1 class="wow bounce">Bienvenue admin <h1>
 								<h2>
-									<span class="wow bounce" data-wow-delay="0.3s">DE FORMATION </span>
-									<span class="wow bounce" data-wow-delay="0.6s">DE LA </span>
-									<span class="wow bounce" data-wow-delay="0.9s">M2L</span>
+
+								</h2>
+								<h2>
+
 								</h2>
 					<!--			<a href="#portfolio" class="smoothScroll templatemo-slider-btn btn btn-default">Learn More</a>  -->
 							</div>
 						</div>
 					</li>
+
 				<!--	<li>
 						<img src="images/slider/2.jpg" alt="Slide 2">
 						<div class="slider-caption">
@@ -87,92 +89,72 @@ unset($_SESSION['accesAdmin']);
 	</section>
 	<!-- end home -->
 	<!-- start service -->
+
+		<section id="service">
+		<div class="container">
+			<div class="row">
+				<div class="col-md-12 text-center wow bounceIn">
+					<h2>Les formations</h2>
+
+					<hr>
+					<h4>Choisissez votre/vos formation(s) </h4>
+				</div>
+				<table>
+				<thead>
+					<th class="black" style="text-align:center;width:20%;"> Date </th>
+					<th class="black" style="text-align:center;width:20%;"> Libelle </th>
+					<th class="black" style="text-align:center;width:20%;"> Duree </th>
+					<th class="black" style="text-align:center;width:20%;"> Lieu </th>
+					<th class="black" style="text-align:center;width:20%;"> Pre requis </th>
+					<th class="black" style="text-align:center;width:20%;"> Formateur </th>
+				</thead>
+				<tbody>
+				<?php
+                include("Requete.php");
+                Tableau();
+                 ?>
+				</tbody>
+				</table>
+
+
+			</div>
+		</div>
+	</section>
 	<section id="service">
 		<div class="container">
 			<div class="row">
 				<div class="col-md-12 text-center wow bounceIn">
-					<h2>Connexion</h2>
+					<h2>Valider les formations de vos salariés</h2>
+
 					<hr>
-					<h4>Au service de formation M2L</h4>
+					<h4>Accepter ou refuser les formations de vos salariés<?php ?></h4>
 				</div>
 
-				<form action="ActionIndex.php" method="post" role="form">
-							<input name="login" type="text" placeholder="Identifiant" maxlength="15" pattern="[a-zA-Z]{1,10}" title="Lettre uniquement,10 caracteres maximuns" class="form-control">
-							<input name="motdepasse" type="password" placeholder="Mot de passe" pattern="[a-zA-Z0-9]{1,15}" title="Lettre & chiffre uniquement,10 caracteres maximuns" maxlength="15"class="form-control">
-							<input type="submit" name="submit2" value="Connexion" class="form-control">
 
-					</form>
-					<?php
-					include("ActionIndex.php");
-					if(isset($_SESSION['message3']))
-					{
-						echo "<div style='width:100%;' class='alert alert-warning'><font color=\"red\">".$_SESSION['message4'].$_SESSION['message3']."</font> </div>";
-						unset($_SESSION['message3']);
-						unset($_SESSION['message4']);
-					}
-					?>
-				<div class="col-md-6 col-sm-6">
-<!--					<div class="media">
-						<div class="media-object media-left wow fadeIn" data-wow-delay="0.6s">
-							<i class="fa fa-laptop"></i>
-						</div>
-						<div class="media-body">
-							<h3 class="media-heading">Web Design</h3>
-							<p>Workforce responsive template is a mobile friendly website design with animated transitions. You may download and modify this layout for your websites.</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6 col-sm-6">
-					<div class="media">
-						<div class="media-object media-left wow fadeIn" data-wow-delay="0.6s">
-							<i class="fa fa-android"></i>
-						</div>
-						<div class="media-body">
-							<h3 class="media-heading">Mobile App</h3>
-							<p>Please tell your friends about templatemo.com website. Thank you. Credit goes to <a rel="nofollow" href="https://pixabay.com" target="_blank">Pixabay</a> for images used in this template.</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6 col-sm-6">
-					<div class="media">
-						<div class="media-object media-left wow fadeIn" data-wow-delay="0.6s">
-							<i class="fa fa-paper-plane"></i>
-						</div>
-						<div class="media-body">
-							<h3 class="media-heading">SEO Marketing</h3>
-							<p>Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet. Dolore magna aliquam erat volutpat.</p>
-						</div>
-					</div>
-				</div>
-				<div class="col-md-6 col-sm-6">
-					<div class="media">
-						<div class="media-object media-left wow fadeIn" data-wow-delay="0.6s">
-							<i class="fa fa-html5"></i>
-						</div>
-						<div class="media-body">
-							<h3 class="media-heading">HTML5 &amp; CSS3</h3>
-							<p>This is based on Bootstrap v3.3.4 layout. Lorem ipsum dolor sit amet, consectetuer adipiscing elit, sed diam nonummy nibh euismod tincidunt ut laoreet.</p>
-						</div>
-					</div>
-				</div>			-->
+				<div>
+				<table>
+				<thead>
+					<th class="black" style="text-align:center;width:20%;"> Nom </th>
+					<th class="black" style="text-align:center;width:20%;"> Contenue formation </th>
+					<th class="black" style="text-align:center;width:20%;"> Nb d'heure de formation </th>
+					<th class="black" style="text-align:center;width:20%;"> Lieu de formation </th>
+					<th class="black" style="text-align:center;width:20%;"> Formateur </th>
+				</thead>
+				<tbody>
+				<?php
+
+                TableauAdmin();
+                    ?>
+				</tbody>
+				</table>
+
+
 			</div>
 		</div>
 	</section>
-	<!-- end service -->
-	<!-- start divider -->
-	<div class="divider">
-		<div class="overlay">
-			<div class="container">
-				<div class="row">
-					<div class="divider-des">
-						<h3 class="text-uppercase">Vous rencontrez des problèmes avec le site ?</h3>
-						<p>Rendez-vous dans la section contact afin de nous demander de l'aide</p>
-						<a href="#contact"><button class="btn btn-default text-uppercase">Contact</button></a>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
+
+
+
 	<!-- end divider -->
 	<!-- start about
 	<section id="about">
@@ -345,71 +327,31 @@ unset($_SESSION['accesAdmin']);
 			<div class="row">
 				<div class="col-md-12">
 					<div class="wow bounceIn">
-						<h2 class="wow bounceIn">Inscription </h2>
+						<h2 class="wow bounceIn">Contact</h2>
 						<hr>
-						<h4>Inscrivez-vous en quelques secondes !</h4>
+						<h4>Discutez avec nous pour plus d'aide...</h4>
 					</div>
-					<form action="ActionIndex.php" method="post" role="form">
+					<form action="#" method="post" role="form">
 						<div class="col-md-4 col-sm-4 wow fadeIn" data-wow-delay="0.3s">
-							<input type="text" pattern="[A-Z]{1,10}" title="lettre en majuscule uniquement,10 caracteres maximuns" maxlength="10" placeholder="Nom" name="nom" class="form-control">
+							<input type="text" placeholder="Nom" class="form-control">
 						</div>
 						<div class="col-md-4 col-sm-4 wow fadeIn" data-wow-delay="0.3s">
-							<input type="text" placeholder="Login" pattern="[A-Za-z]{1,10}" title="lettre uniquement,10 caracteres maximuns" maxlength="10" name="prenom" class="form-control">
+							<input type="email" placeholder="Email" class="form-control">
 						</div>
 						<div class="col-md-4 col-sm-4 wow fadeIn" data-wow-delay="0.3s">
-							<input type="email" placeholder="Email" pattern="[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,6}$" title="respecter un format mail" name="mail" class="form-control">
+							<input type="text" placeholder="Sujet" class="form-control">
 						</div>
 						<div class="col-md-12 col-sm-12 wow fadeIn" data-wow-delay="0.9s">
-							<input type="password" class="form-control" pattern="[A-Za-z0-9]{1,15}" title="lettre & chiffre uniquement,10 caracteres maximuns" maxlength="15" name="mdp" placeholder="Password">
+							<textarea class="form-control" rows="5" placeholder="Message"></textarea>
 						</div>
 						<div class="col-md-offset-3 col-sm-offset-3 col-sm-6 col-md-6 wow fadeIn" data-wow-delay="0.3s">
-							<input type="submit" value="S'inscrire" name="submit" class="form-control">
-
-							<?php
-							include("ActionIndex.php");
-							if(isset($_SESSION['$messageErreurInscription']))
-							{
-								//echo $_SESSION['sql'];
-								echo "<div style='width:100%;' class='alert alert-warning'><font color=\"red\">".$_SESSION['message5'].$_SESSION['$messageErreurInscription']."</font> </div>";
-								unset($_SESSION['$messageErreurInscription']);
-							}
-							if(isset($_SESSION['messageinscription']))
-							{
-								//echo $_SESSION['sql'];
-								echo "<div style='width:100%;' class='alert alert-success'><font color=\"green\">".$_SESSION['messageinscription']."</font> </div>";
-								unset($_SESSION['messageinscription']);
-							}
-							if(isset($_SESSION['message2']))
-							{
-								echo "<div style='width:100%;' class='alert alert-warning'><font color=\"red\">".$_SESSION['message2'].$_SESSION['message']."</font> </div>";
-								unset($_SESSION['message2']);
-								unset($_SESSION['message']);
-							}
-
-							?>
+							<input type="submit" value="Envoyer Message" class="form-control">
 						</div>
 					</form>
 				</div>
 			</div>
 		</div>
 	</section>
-
-	<!-- end contact -->
-	<footer>
-		<div class="container">
-			<div class="row">
-				<div class="col-md-12">
-			<!--		<ul class="social-icon wow fadeIn" data-wow-delay="0.3s">
-						<li><a href="#" class="fa fa-facebook"></a></li>
-						<li><a href="#" class="fa fa-twitter"></a></li>
-						<li><a href="#" class="fa fa-instagram"></a></li>
-					</ul>	-->
-					<p class="wow bounceIn">Copyright &copy; <span>M2L</span> 2084
-                    | Design: <a rel="nofollow" href="http://www.templatemo.com" target="_parent"><span>templatemo</span></a></p>
-				</div>
-			</div>
-		</div>
-	</footer>
 	<script src="js/jquery.js"></script>
 	<script src="js/bootstrap.min.js"></script>
 	<script src="js/jquery.flexslider.js"></script>
